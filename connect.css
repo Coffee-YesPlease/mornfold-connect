@@ -1,0 +1,223 @@
+/* Colours, fonts and sizes from context/brand/design-tokens.json ("Forest and Parchment"). */
+@font-face {
+  font-family: Manrope;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/manrope-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: Inter;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/inter-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: Inter;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/inter-latin-500-normal.woff2') format('woff2');
+}
+
+:root {
+  --background: #f7f4ec;
+  --surface: #fffcf5;
+  --text: #202820;
+  --text-secondary: #4e574d;
+  --text-muted: #62675c;
+  --border: #d8d5c8;
+  --primary: #235347;
+  --primary-hover: #1b453a;
+  --on-primary: #fffcf5;
+  --success: #2d613f;
+  --success-subtle: #e8f1e6;
+  --error: #a3343f;
+  --error-subtle: #f9e9e9;
+  --focus: #235347;
+  --shadow: 0 24px 64px -12px #051f2033;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #051f20;
+    --surface: #0b2b26;
+    --text: #f2e8cf;
+    --text-secondary: #c8d4c5;
+    --text-muted: #a8bca9;
+    --border: #315147;
+    --primary: #a3b18a;
+    --primary-hover: #b6c39f;
+    --on-primary: #051f20;
+    --success: #a5d2aa;
+    --success-subtle: #193d2a;
+    --error: #f0a9ae;
+    --error-subtle: #40292e;
+    --focus: #a3b18a;
+    --shadow: 0 24px 64px -12px #00000066;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--background);
+  color: var(--text);
+  font:
+    400 16px/24px Inter,
+    'Noto Sans Devanagari',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 32px 32px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: center;
+  animation: rise 240ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+.name {
+  font:
+    600 18px/24px Manrope,
+    sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.badge {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 24px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--success-subtle);
+  color: var(--success);
+}
+.badge svg {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tick path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: draw 420ms 160ms cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+.cross {
+  display: none;
+}
+.failed .badge {
+  background: var(--error-subtle);
+  color: var(--error);
+}
+.failed .tick {
+  display: none;
+}
+.failed .cross {
+  display: block;
+}
+
+h1 {
+  margin: 0;
+  font:
+    600 28px/36px Manrope,
+    'Noto Sans Devanagari',
+    sans-serif;
+  overflow-wrap: anywhere;
+}
+.account {
+  margin: 8px 0 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+.next {
+  margin: 16px 0 0;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 32px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+.button:hover {
+  background: var(--primary-hover);
+}
+.button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.close {
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 32px 20px 24px;
+  }
+  h1 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .tick path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
