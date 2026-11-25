@@ -4,13 +4,21 @@
 /* global window, document -- it runs in the browser, outside the app's build */
 'use strict'
 
+// One line per service a sign-in can connect (its name and what happens next); the server's
+// supabase/functions/_shared/connectPage.ts lists the same names.
 const SERVICES = {
   wispr: {
     name: 'Wispr Flow',
-    next: 'Mornfold can now read your Wispr Flow meetings. Use Test connection in Settings to see your latest ones.',
+    next: 'Your finished meetings will appear in Mornfold as notes within the hour.',
   },
-  gmail: { name: 'Gmail', next: 'Your mail will start appearing in Mornfold in a few minutes.' },
-  outlook: { name: 'Outlook', next: 'Your mail will start appearing in Mornfold in a few minutes.' },
+  gmail: {
+    name: 'Google',
+    next: 'Your mail and calendar will start appearing in Mornfold in a few minutes.',
+  },
+  outlook: {
+    name: 'Outlook',
+    next: 'Your mail and calendar will start appearing in Mornfold in a few minutes.',
+  },
 }
 
 /** One plain line, cut to a length: no control or direction characters. */
