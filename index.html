@@ -1,0 +1,45 @@
+<!doctype html>
+<!--
+  The page Mornfold's sign-ins end on (Wispr Flow, Gmail, Outlook), served by GitHub Pages from
+  the public repository Coffee-YesPlease/mornfold-connect (a copy of this folder). A sign-in's
+  server function sends the browser here with what happened after the "#", which the browser
+  never sends to any server (so the account address stays out of GitHub's logs). connect.js
+  shows those words as plain text only; the page loads nothing from anywhere else.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Mornfold</title>
+    <link rel="icon" href="mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="connect.css" />
+    <script src="connect.js" defer></script>
+  </head>
+  <body>
+    <main class="card" aria-live="polite">
+      <div class="brand">
+        <img class="mark" src="mark.svg" alt="" width="40" height="40" />
+        <span class="name">Mornfold</span>
+      </div>
+
+      <div class="badge" aria-hidden="true">
+        <svg class="tick" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+        <svg class="cross" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" /></svg>
+      </div>
+
+      <h1 id="headline">Signed in</h1>
+      <p id="account" class="account" hidden></p>
+      <p id="next" class="next">Go back to Mornfold to see where things stand.</p>
+
+      <a class="button" href="mornfold://open" id="open">Open Mornfold</a>
+      <p class="close">You can close this tab.</p>
+    </main>
+  </body>
+</html>
