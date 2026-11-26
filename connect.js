@@ -1,5 +1,5 @@
-// Reads what the sign-in's server function put after the "#": service, status, account and
-// reason. Only words from the fixed lists below or plain text ever reach the page (textContent,
+// Reads what the sign-in's server function put after the "#": service, status, account, a note on
+// what happens next, and the reason. Only words from the fixed lists below or plain text ever reach the page (textContent,
 // never HTML), so nothing in the address can add links, styles or scripts.
 /* global window, document -- it runs in the browser, outside the app's build */
 'use strict'
@@ -18,6 +18,14 @@ const SERVICES = {
   outlook: {
     name: 'Outlook',
     next: 'Your mail and calendar will start appearing in Mornfold in a few minutes.',
+  },
+  zerodha: {
+    name: 'Zerodha',
+    next: 'Life → Investments in Mornfold now shows your holdings.',
+  },
+  icici: {
+    name: 'ICICI Direct',
+    next: 'Life → Investments in Mornfold now shows your holdings.',
   },
 }
 
@@ -41,6 +49,7 @@ function show() {
   const name = service ? service.name : 'Your account'
   const account = plain(params.get('account') ?? '', 320)
   const reason = plain(params.get('reason') ?? '', 600)
+  const note = plain(params.get('note') ?? '', 600)
 
   document.body.classList.toggle('failed', failed)
   document.title = failed ? `Couldn't connect ${name} · Mornfold` : `${name} is connected · Mornfold`
@@ -55,7 +64,7 @@ function show() {
   // The server's reasons already say what to do next (usually "press Connect again").
   document.getElementById('next').textContent = failed
     ? reason || 'Something went wrong. Try again in Mornfold.'
-    : (service?.next ?? 'Go back to Mornfold to see it.')
+    : note || (service?.next ?? 'Go back to Mornfold to see it.')
   document.getElementById('open').textContent = failed ? 'Try again in Mornfold' : 'Open Mornfold'
 }
 
